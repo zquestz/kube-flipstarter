@@ -30,10 +30,6 @@ spec:
         ports:
           - name: web
             containerPort: 3000
-        readinessProbe:
-          httpGet:
-            port: 3000
-            path: /
       restartPolicy: Always
       volumes:
         - name: flipstarter-data
