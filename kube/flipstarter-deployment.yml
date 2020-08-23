@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  labels:
+    service: flipstarter
+    version: 0.0.1
+  name: flipstarter
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      service: flipstarter
+  template:
+    metadata:
+      labels:
+        service: flipstarter
+    spec:
+      containers:
+      - image: flipstarter/flipstarter:latest
+        name: flipstarter
+        volumeMounts:
+          - mountPath: /app/static
+            name: flipstarter-data
+        resources:
+          requests:
+            memory: "256Mi"
+        ports:
+          - name: web
+            containerPort: 3000
+        readinessProbe:
+          httpGet:
+            port: 3000
+            path: /
+      restartPolicy: Always
+      volumes:
+        - name: flipstarter-data
+          gcePersistentDisk:
+            pdName: flipstarter-data
+            fsType: ext4
