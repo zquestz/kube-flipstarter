@@ -1,4 +1,4 @@
-# kube-ipfs
+# kube-flipstarter
 Kuberntes configurations for flipstarter.cash on GCE. Note that this requires `cert-manager` if you use the ingress features.
 
 ## Deployment
