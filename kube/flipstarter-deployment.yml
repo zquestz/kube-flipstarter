@@ -19,10 +19,10 @@ spec:
         service: flipstarter
     spec:
       containers:
-      - image: flipstarter/flipstarter:latest
+      - image: zquestz/flipstarter:latest
         name: flipstarter
         volumeMounts:
-          - mountPath: /app/static
+          - mountPath: /app/static/campaigns
             name: flipstarter-data
         resources:
           requests:
