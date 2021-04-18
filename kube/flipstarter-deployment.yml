@@ -3,27 +3,27 @@ kind: Deployment
 metadata:
   namespace: default
   labels:
-    service: flipstarter
+    service: flipstarter-globalbitcoin
     version: 0.0.1
-  name: flipstarter
+  name: flipstarter-globalbitcoin
 spec:
   strategy:
     type: Recreate
   replicas: 1
   selector:
     matchLabels:
-      service: flipstarter
+      service: flipstarter-globalbitcoin
   template:
     metadata:
       labels:
-        service: flipstarter
+        service: flipstarter-globalbitcoin
     spec:
       containers:
       - image: zquestz/flipstarter:latest
-        name: flipstarter
+        name: flipstarter-globalbitcoin
         volumeMounts:
           - mountPath: /app/static/campaigns
-            name: flipstarter-data
+            name: flipstarter-globalbitcoin-data
         resources:
           requests:
             memory: "64Mi"
@@ -32,7 +32,7 @@ spec:
             containerPort: 3000
       restartPolicy: Always
       volumes:
-        - name: flipstarter-data
+        - name: flipstarter-globalbitcoin-data
           gcePersistentDisk:
-            pdName: flipstarter-data
+            pdName: flipstarter-globalbitcoin-data
             fsType: ext4
