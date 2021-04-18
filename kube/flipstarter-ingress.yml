@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: flipstarter-ingress
+  name: flipstarter-globalbitcoin-ingress
   namespace: default
   annotations:
     kubernetes.io/tls-acme: "true"
@@ -9,16 +9,16 @@ metadata:
 spec:
   tls:
   - hosts:
-    - flipstarter.eatbch.org
-    secretName: flipstarter-tls
+    - flipstarter.globalbitcoin.cash
+    secretName: flipstarter-globalbitcoin-tls
   backend:
-    serviceName: flipstarter
-    servicePort: 300
+    serviceName: flipstarter-globalbitcoin
+    servicePort: 305
   rules:
-  - host: flipstarter.eatbch.org
+  - host: flipstarter.globalbitcoin.cash
     http:
       paths:
       - path: /
         backend:
-          serviceName: flipstarter
-          servicePort: 300
+          serviceName: flipstarter-globalbitcoin
+          servicePort: 305
