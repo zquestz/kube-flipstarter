@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: flipstarter-globalbitcoin-ingress
@@ -11,14 +11,19 @@ spec:
   - hosts:
     - flipstarter.globalbitcoin.cash
     secretName: flipstarter-globalbitcoin-tls
-  backend:
-    serviceName: flipstarter-globalbitcoin
-    servicePort: 305
+  defaultBackend:
+    service:
+      name: flipstarter-globalbitcoin
+      port:
+        number: 305
   rules:
   - host: flipstarter.globalbitcoin.cash
     http:
       paths:
       - path: /
+        pathType: ImplementationSpecific
         backend:
-          serviceName: flipstarter-globalbitcoin
-          servicePort: 305
+          service:
+            name: flipstarter-globalbitcoin
+            port:
+              number: 305
