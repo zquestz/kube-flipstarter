@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: flipstarter-ingress
@@ -11,14 +11,19 @@ spec:
   - hosts:
     - flipstarter.eatbch.org
     secretName: flipstarter-tls
-  backend:
-    serviceName: flipstarter
-    servicePort: 300
+  defaultBackend:
+    service:
+      name: flipstarter
+      port:
+        number: 300
   rules:
   - host: flipstarter.eatbch.org
     http:
       paths:
       - path: /
+        pathType: ImplementationSpecific
         backend:
-          serviceName: flipstarter
-          servicePort: 300
+          service:
+            name: flipstarter
+            port:
+              number: 300
