@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: flipstarter
+  name: flipstarter-eatbch
   namespace: default
 spec:
   ports:
-    - port: 300
+    - port: 350
       targetPort: 3000
   selector:
-    service: flipstarter
+    service: flipstarter-eatbch
   type: NodePort

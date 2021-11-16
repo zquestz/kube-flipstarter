@@ -3,27 +3,27 @@ kind: Deployment
 metadata:
   namespace: default
   labels:
-    service: flipstarter
+    service: flipstarter-eatbch
     version: 0.0.1
-  name: flipstarter
+  name: flipstarter-eatbch
 spec:
   strategy:
     type: Recreate
   replicas: 1
   selector:
     matchLabels:
-      service: flipstarter
+      service: flipstarter-eatbch
   template:
     metadata:
       labels:
-        service: flipstarter
+        service: flipstarter-eatbch
     spec:
       containers:
       - image: zquestz/flipstarter:latest
-        name: flipstarter
+        name: flipstarter-eatbch
         volumeMounts:
           - mountPath: /app/static/campaigns
-            name: flipstarter-data
+            name: flipstarter-eatbch-data
         resources:
           requests:
             memory: "64Mi"
@@ -32,7 +32,7 @@ spec:
             containerPort: 3000
       restartPolicy: Always
       volumes:
-        - name: flipstarter-data
+        - name: flipstarter-eatbch-data
           gcePersistentDisk:
-            pdName: flipstarter-data
+            pdName: flipstarter-eatbch-data
             fsType: ext4
